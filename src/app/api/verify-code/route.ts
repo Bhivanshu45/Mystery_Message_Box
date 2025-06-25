@@ -2,7 +2,7 @@ import connectDB from "@/lib/dbConnect"
 import UserModel from "@/model/User";
 import { verifySchema } from "@/schemas/verifySchema";
 
-export const POST = async (req: Response) => {
+export const POST = async (req: Request) => {
     await connectDB();
 
     try{
