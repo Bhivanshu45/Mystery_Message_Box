@@ -10,10 +10,10 @@ export const authOptions: NextAuthOptions = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
+        identifier: {
+          label: "Email or Username",
           type: "text",
-          placeholder: "Enter your email",
+          placeholder: "Enter your email or username",
         },
         password: {
           label: "Password",
@@ -21,11 +21,7 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Enter your password",
         },
       },
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      async authorize(
-        credentials: Record<string, string> | undefined,
-        _req: unknown
-      ): Promise<any> {
+      async authorize(credentials): Promise<any> {
         if (!credentials) {
           throw new Error("No credentials provided.");
         }
@@ -33,6 +29,7 @@ export const authOptions: NextAuthOptions = {
         const { identifier, password } = credentials;
 
         await connectDB();
+
         try {
           const user = await UserModel.findOne({
             $or: [{ email: identifier }, { username: identifier }],
@@ -53,11 +50,8 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error("Incorrect password. Please try again.");
           }
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            throw new Error(error.message || "Something went wrong.");
-          }
-          throw new Error("Something went wrong.");
+        } catch (error: any) {
+          throw new Error(error.message || "Something went wrong.");
         }
       },
     }),
@@ -65,16 +59,16 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token._id = user._id?.toString();
-        token.username = user.username;
-        token.isVerified = user.isVerified;
-        token.isAcceptingMessage = user.isAcceptingMessage;
+        token._id = (user as any)._id?.toString();
+        token.username = (user as any).username;
+        token.isVerified = (user as any).isVerified;
+        token.isAcceptingMessage = (user as any).isAcceptingMessage;
       }
 
       return token;
     },
     async session({ session, token }) {
-      if (token) {
+      if (token && session.user) {
         session.user._id = token._id;
         session.user.username = token.username;
         session.user.isVerified = token.isVerified;
