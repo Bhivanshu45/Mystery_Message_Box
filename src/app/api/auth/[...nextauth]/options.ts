@@ -4,12 +4,6 @@ import bcrypt from "bcryptjs";
 import connectDB from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 
-interface CredentialType {
-  identifier: string;
-  password: string;
-}
-  
-
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -27,9 +21,10 @@ export const authOptions: NextAuthOptions = {
           placeholder: "Enter your password",
         },
       },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(
         credentials: Record<string, string> | undefined,
-        _req: any
+        _req: unknown
       ): Promise<any> {
         if (!credentials) {
           throw new Error("No credentials provided.");
@@ -58,14 +53,16 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error("Incorrect password. Please try again.");
           }
-        } catch (error: any) {
-          throw new Error(error.message || "Something went wrong.");
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            throw new Error(error.message || "Something went wrong.");
+          }
+          throw new Error("Something went wrong.");
         }
       },
     }),
   ],
   callbacks: {
-    // we can customize the callback types using next-auth.d.ts using the config
     async jwt({ token, user }) {
       if (user) {
         token._id = user._id?.toString();

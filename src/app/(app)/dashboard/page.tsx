@@ -74,7 +74,7 @@ const Dashboard = () => {
     fetchMessages();
     fetchAcceptMessages();
 
-  }, [session, setValue]);
+  }, [session, setValue,fetchAcceptMessages]);
 
   const handleSwitchToggle = async() => {
 

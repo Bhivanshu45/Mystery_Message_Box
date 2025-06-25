@@ -59,7 +59,6 @@ const SignInPage = () => {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-
             <FormField
               name="identifier"
               control={form.control}
@@ -112,7 +111,7 @@ const SignInPage = () => {
         </Form>
         <div className="text-center mt-4">
           <p>
-            Don't have an Account?{" "}
+            Don&apos;t have an Account?
             <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
               Sign up
             </Link>
