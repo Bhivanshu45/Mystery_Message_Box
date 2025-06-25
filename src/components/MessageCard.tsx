@@ -1,7 +1,6 @@
 'use client'
 import {
   Card,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -32,7 +31,7 @@ type MessageCardProps = {
 const MessageCard = ({message,onMessageDelete}: MessageCardProps) => {
 
     const handleDeleteConfirm = async() => {
-        const response = await axios.delete<ApiResponse>(`/api/delete-message?messageId=${message._id}`)
+        await axios.delete<ApiResponse>(`/api/delete-message?messageId=${message._id}`)
 
         toast.success('Message deleted successfully')
 

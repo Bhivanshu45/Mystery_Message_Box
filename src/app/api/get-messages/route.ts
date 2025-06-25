@@ -1,10 +1,9 @@
 import connectDB from "@/lib/dbConnect"
 import { getServerSession, User } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
-import mongoose from "mongoose";
 import UserModel from "@/model/User";
 
-export const GET = async (req: Request) => {
+export const GET = async () => {
     await connectDB();
 
     const session = await getServerSession(authOptions);

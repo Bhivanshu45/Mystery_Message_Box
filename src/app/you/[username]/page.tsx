@@ -62,7 +62,7 @@ const Page = () => {
     console.log("Message content :",messageContent)
     console.log("Sending message:", data);
     try{
-      const response = await axios.post('/api/send-message',{
+      await axios.post('/api/send-message',{
         username: username,
         content: data.content
       });

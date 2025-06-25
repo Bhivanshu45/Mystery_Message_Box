@@ -30,7 +30,7 @@ const NavBar = () => {
 
   const logOut = async() => {
     setIsLoading(true);
-    const response = await signOut({ redirect: false });
+    await signOut({ redirect: false });
     
     toast.success('Logged out successfully');
     router.replace('/')

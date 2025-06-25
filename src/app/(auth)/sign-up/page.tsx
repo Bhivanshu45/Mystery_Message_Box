@@ -64,7 +64,7 @@ const SignUpPage = () => {
       const errorMessage = axiosError.response?.data.message || "Failed to sign up.";
       toast.error(
         <div>
-          <p className="font-semibold text-red-600">⚠️ Sign up failed</p>
+          <p className="font-semibold text-red-600">{errorMessage}</p>
           <p className="text-sm text-gray-800">Please try again later.</p>
         </div>,
         {
@@ -85,8 +85,7 @@ const SignUpPage = () => {
           const response = await axios.get(`/api/username-uniqueness?username=${username}`);
           // console.log("Username uniqueness response:", response);
 
-          let message = response.data.message
-          setUsernameMessage(message);
+          setUsernameMessage(response.data.message);
 
         }catch(error){
           const axiosError = error as AxiosError<ApiResponse>;

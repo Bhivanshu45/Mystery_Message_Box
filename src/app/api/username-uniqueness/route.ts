@@ -1,6 +1,5 @@
 import connectDB from "@/lib/dbConnect"
 import UserModel from "@/model/User";
-import { signUpSchema} from "@/schemas/signUpSchema";
 
 export const GET = async(request: Request) => {
     await connectDB();

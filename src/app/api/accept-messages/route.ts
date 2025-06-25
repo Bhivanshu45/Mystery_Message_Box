@@ -2,7 +2,6 @@ import { getServerSession, User } from "next-auth"
 import { authOptions } from "../auth/[...nextauth]/options"
 import connectDB from "@/lib/dbConnect";
 import UserModel from "@/model/User";
-import { acceptMessageSchema } from "@/schemas/acceptMessageSchema";
 
 // POST request for update isAccepting Message status
 export const POST = async (req: Request) => {
@@ -48,7 +47,7 @@ export const POST = async (req: Request) => {
 }
 
 // GET request for checking isAccepting Message status
-export const GET = async (req: Request) => {
+export const GET = async () => {
     await connectDB();
     const session = await getServerSession(authOptions);
 

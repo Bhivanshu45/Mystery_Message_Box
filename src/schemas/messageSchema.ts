@@ -1,5 +1,4 @@
 import { z } from "zod/v4";
-import { usernameValidation } from "./signUpSchema";
 
 export const messageSchema = z.object({
     content: z.string()
