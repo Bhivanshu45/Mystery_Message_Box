@@ -3,7 +3,8 @@
 Welcome to **Mystery Message Box**, a fun and interactive platform where users can send and receive anonymous messages. Get real, raw, and unfiltered feedback from your friends, colleagues, or secret admirers without revealing their identity.
 
 **🔗 Live Demo:** [https://mystery-message-box.bhivanshu.me](https://mystery-message-box.bhivanshu.me)
-** Optional URL:** [Vercel domain](https://mystery-message-box-n6tq-git-main-bhivanshus-projects.vercel.app/)
+
+**Alter URL:** [Vercel domain](https://mystery-message-box-n6tq-git-main-bhivanshus-projects.vercel.app/)
 
 ---
 
